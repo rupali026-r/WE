@@ -397,34 +397,50 @@
   background: #a8a8a8;
 }
 
-.input-form {
+.voice-btn {
+  background: none;
+  border: none;
+  font-size: 1.7em;
+  cursor: pointer;
+  outline: none;
+  margin-right: 0.3em;
+  color: #4a73a8;
+  transition: color 0.2s;
+  padding: 0 0.3em;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  background: #f8f9fa;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+  height: 2.5em;
+}
+.voice-btn:hover, .voice-btn:focus {
+  color: #667eea;
+  background: #f0f4ff;
+}
+
+.input-form {
+  background: #fff;
+  border-radius: 2em;
+  box-shadow: 0 2px 8px rgba(100, 100, 200, 0.07);
+  padding: 0.3em 0.7em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 1em;
 }
 
 .input-field {
-  flex: 1;
-  padding: 12px 18px;
-  border: 1.5px solid #d1d5db;
-  border-radius: 8px 0 0 8px;
-  font-size: 1rem;
-  font-family: inherit;
+  border: none;
   outline: none;
-  background: #fff;
-  transition: border 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.06);
+  font-size: 1.1em;
+  background: transparent;
+  flex: 1;
+  padding: 0.7em 0.5em;
+  border-radius: 2em;
+  color: #333;
 }
 
 .input-field:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+  background: #f0f4ff;
 }
 
 .input-field:disabled {
@@ -434,24 +450,20 @@
 }
 
 .submit-button {
-  padding: 12px 28px;
-  border: none;
-  border-radius: 0 8px 8px 0;
-  background: linear-gradient(90deg, #667eea 0%, #5a6fd8 100%);
+  border-radius: 2em;
+  padding: 0.6em 1.5em;
+  font-size: 1em;
+  background: linear-gradient(90deg, #667eea 0%, #4a73a8 100%);
   color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.10);
-  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
-  margin-left: -1px;
+  border: none;
+  font-weight: bold;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(100, 100, 200, 0.07);
 }
 
 .submit-button:hover:not(:disabled) {
-  background: linear-gradient(90deg, #5a6fd8 0%, #667eea 100%);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.16);
-  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(90deg, #4a73a8 0%, #667eea 100%);
+  box-shadow: 0 4px 16px rgba(100, 100, 200, 0.13);
 }
 
 .submit-button:disabled {
