@@ -1,0 +1,125 @@
+{
+  "header": {
+    "title": "Carewise AI",
+    "subtitle": "Révolutionner les soins de santé avec l'Intelligence Artificielle"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "symptomChecker": "Vérificateur de Symptômes IA",
+    "recommendations": "Recommandations Personnalisées",
+    "community": "Blogs et Support Communautaire",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 Carewise AI | Tous droits réservés"
+  },
+  "home": {
+    "welcome": "Bienvenue sur Carewise AI",
+    "intro": "Votre Compagnon Santé Intelligent",
+    "features": {
+      "title": "Nos Fonctionnalités",
+      "symptomChecker": {
+        "title": "Vérificateur de Symptômes IA",
+        "description": "Obtenez des informations instantanées sur vos symptômes grâce à l'IA avancée"
+      },
+      "recommendations": {
+        "title": "Recommandations Intelligentes",
+        "description": "Recevez des recommandations de santé personnalisées"
+      },
+      "community": {
+        "title": "Support Communautaire",
+        "description": "Connectez-vous avec d'autres et partagez vos expériences"
+      }
+    },
+    "getStarted": "Commencer"
+  },
+  "symptomChecker": {
+    "title": "Vérificateur de Symptômes IA",
+    "description": "Décrivez vos symptômes et laissez notre IA vous aider à mieux les comprendre",
+    "inputLabel": "Décrivez vos symptômes",
+    "placeholder": "Exemple: J'ai mal à la tête et de la fièvre...",
+    "analyze": "Analyser les Symptômes",
+    "analyzing": "Analyse en cours...",
+    "languageSelect": "Sélectionner la Langue",
+    "quickQuestions": {
+      "title": "Questions Rapides",
+      "fever": "J'ai de la fièvre",
+      "headache": "J'ai mal à la tête",
+      "cough": "J'ai de la toux",
+      "stomach": "J'ai mal au ventre",
+      "fatigue": "Je me sens fatigué"
+    }
+  },
+  "recommendations": {
+    "title": "Recommandations de Santé Personnalisées",
+    "description": "Obtenez des conseils de santé personnalisés basés sur votre profil",
+    "categories": {
+      "diet": "Recommandations Alimentaires",
+      "exercise": "Plans d'Exercice",
+      "lifestyle": "Conseils de Mode de Vie",
+      "mental": "Bien-être Mental"
+    },
+    "updateProfile": "Mettre à Jour le Profil de Santé",
+    "getRecommendations": "Obtenir des Recommandations"
+  },
+  "community": {
+    "title": "Communauté et Support",
+    "description": "Connectez-vous avec d'autres et partagez votre parcours de santé",
+    "features": {
+      "blogs": "Blogs Santé",
+      "forums": "Forums de Discussion",
+      "support": "Groupes de Soutien",
+      "experts": "Conseil d'Experts"
+    },
+    "joinCommunity": "Rejoindre la Communauté"
+  },
+  "about": {
+    "title": "À Propos de Carewise AI",
+    "mission": "Notre Mission",
+    "missionText": "Rendre les soins de santé plus accessibles et compréhensibles grâce à l'intelligence artificielle",
+    "vision": "Notre Vision",
+    "visionText": "Un monde où chacun a accès à des informations de santé instantanées et fiables",
+    "team": {
+      "title": "Notre Équipe",
+      "description": "Un groupe dévoué de professionnels de la santé et d'experts en IA"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "description": "Nous aimerions avoir de vos nouvelles"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Vous avez des questions ? Nous sommes là pour vous aider !",
+    "form": {
+      "name": "Votre Nom",
+      "email": "Adresse Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "send": "Envoyer le Message"
+    },
+    "info": {
+      "email": "Email: support@carewise.ai",
+      "phone": "Téléphone: +1 (555) 123-4567",
+      "address": "Adresse: 123 Healthcare Ave, Medical District"
+    }
+  },
+  "resultCard": {
+    "title": "Résultats de l'Analyse",
+    "condition": "Condition Possible",
+    "unknownCondition": "Condition inconnue",
+    "causes": "Causes Possibles",
+    "remedies": "Remèdes Maison",
+    "medicines": "Médicaments Suggérés",
+    "severity": "Niveau de Gravité",
+    "openFda": {
+      "title": "Informations sur les Médicaments OpenFDA",
+      "brandName": "Nom de Marque",
+      "genericName": "Nom Générique",
+      "purpose": "Objectif",
+      "warnings": "Avertissements"
+    },
+    "disclaimer": "Cette analyse est fournie à titre informatif uniquement et ne remplace pas l'avis médical professionnel. Veuillez consulter un professionnel de santé pour un diagnostic et un traitement appropriés."
+  }
+} 

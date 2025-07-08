@@ -1,0 +1,33 @@
+{
+  "header": {
+    "title": "Carewise AI",
+    "subtitle": "कृत्रिम बुद्धिमत्तेसह आरोग्यसेवेत क्रांती"
+  },
+  "navigation": {
+    "home": "मुख्यपृष्ठ",
+    "symptomChecker": "AI लक्षण तपासणी",
+    "recommendations": "वैयक्तिक शिफारसी",
+    "community": "ब्लॉग्स आणि समुदाय समर्थन",
+    "about": "आमच्याबद्दल",
+    "contact": "संपर्क"
+  },
+  "footer": {
+    "copyright": "© 2025 Carewise AI | सर्व हक्क राखीव"
+  },
+  "symptomChecker": {
+    "title": "AI लक्षण तपासणी",
+    "description": "आपली लक्षणे वर्णन करा आणि आमचे AI आपल्याला ती समजून घेण्यास मदत करेल",
+    "inputLabel": "आपली लक्षणे वर्णन करा",
+    "placeholder": "उदाहरण: मला डोकेदुखी आणि ताप आहे...",
+    "analyze": "लक्षणांचे विश्लेषण करा",
+    "analyzing": "विश्लेषण चालू आहे...",
+    "quickQuestions": {
+      "title": "त्वरित प्रश्न",
+      "fever": "मला ताप आहे",
+      "headache": "मला डोकेदुखी आहे",
+      "cough": "मला खोकला आहे",
+      "stomach": "मला पोटदुखी आहे",
+      "fatigue": "मी थकलो आहे"
+    }
+  }
+} 

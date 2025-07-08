@@ -1,0 +1,64 @@
+.language-selector {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.language-selector button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-selector button:hover {
+  background-color: #f0f0f0;
+}
+
+.language-selector button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+/* Existing styles for result card if any */
+.result-card {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-section {
+  margin-bottom: 20px;
+}
+
+.result-section h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.severity-low {
+  color: #28a745;
+}
+
+.severity-medium {
+  color: #ffc107;
+}
+
+.severity-high {
+  color: #dc3545;
+}
+
+.disclaimer {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #6c757d;
+} 

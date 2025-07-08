@@ -1,0 +1,125 @@
+{
+  "header": {
+    "title": "Carewise AI",
+    "subtitle": "Revolutionizing Healthcare with Artificial Intelligence"
+  },
+  "navigation": {
+    "home": "Home",
+    "symptomChecker": "AI Symptom Checker",
+    "recommendations": "Personalized Recommendations",
+    "community": "Blogs and Community Support",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 Carewise AI | All Rights Reserved"
+  },
+  "home": {
+    "welcome": "Welcome to Carewise AI",
+    "intro": "Your Intelligent Healthcare Companion",
+    "features": {
+      "title": "Our Features",
+      "symptomChecker": {
+        "title": "AI Symptom Checker",
+        "description": "Get instant insights about your symptoms using advanced AI"
+      },
+      "recommendations": {
+        "title": "Smart Recommendations",
+        "description": "Receive personalized health recommendations"
+      },
+      "community": {
+        "title": "Community Support",
+        "description": "Connect with others and share experiences"
+      }
+    },
+    "getStarted": "Get Started"
+  },
+  "symptomChecker": {
+    "title": "AI Symptom Checker",
+    "description": "Describe your symptoms and let our AI help you understand them better",
+    "inputLabel": "Describe your symptoms",
+    "placeholder": "Example: I have a headache and fever...",
+    "analyze": "Analyze Symptoms",
+    "analyzing": "Analyzing...",
+    "languageSelect": "Select Language",
+    "quickQuestions": {
+      "title": "Quick Questions",
+      "fever": "I have a fever",
+      "headache": "I have a headache",
+      "cough": "I have a cough",
+      "stomach": "I have stomach pain",
+      "fatigue": "I feel tired"
+    }
+  },
+  "recommendations": {
+    "title": "Personalized Health Recommendations",
+    "description": "Get customized health advice based on your profile",
+    "categories": {
+      "diet": "Diet Recommendations",
+      "exercise": "Exercise Plans",
+      "lifestyle": "Lifestyle Tips",
+      "mental": "Mental Wellness"
+    },
+    "updateProfile": "Update Health Profile",
+    "getRecommendations": "Get Recommendations"
+  },
+  "community": {
+    "title": "Community & Support",
+    "description": "Connect with others and share your health journey",
+    "features": {
+      "blogs": "Health Blogs",
+      "forums": "Discussion Forums",
+      "support": "Support Groups",
+      "experts": "Expert Advice"
+    },
+    "joinCommunity": "Join Community"
+  },
+  "about": {
+    "title": "About Carewise AI",
+    "mission": "Our Mission",
+    "missionText": "To make healthcare more accessible and understandable using artificial intelligence",
+    "vision": "Our Vision",
+    "visionText": "A world where everyone has access to instant, reliable health insights",
+    "team": {
+      "title": "Our Team",
+      "description": "A dedicated group of healthcare professionals and AI experts"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "description": "We'd love to hear from you"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions? We're here to help!",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "email": "Email: support@carewise.ai",
+      "phone": "Phone: +1 (555) 123-4567",
+      "address": "Address: 123 Healthcare Ave, Medical District"
+    }
+  },
+  "resultCard": {
+    "title": "Analysis Results",
+    "condition": "Possible Condition",
+    "unknownCondition": "Unknown condition",
+    "causes": "Possible Causes",
+    "remedies": "Home Remedies",
+    "medicines": "Suggested Medicines",
+    "severity": "Severity Level",
+    "openFda": {
+      "title": "OpenFDA Medicine Info",
+      "brandName": "Brand Name",
+      "genericName": "Generic Name",
+      "purpose": "Purpose",
+      "warnings": "Warnings"
+    },
+    "disclaimer": "This analysis is for informational purposes only and should not replace professional medical advice. Please consult a healthcare provider for proper diagnosis and treatment."
+  }
+} 

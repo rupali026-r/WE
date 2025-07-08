@@ -1,0 +1,125 @@
+{
+  "header": {
+    "title": "Carewise AI",
+    "subtitle": "Revolucionando la atención médica con Inteligencia Artificial"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "symptomChecker": "Verificador de Síntomas IA",
+    "recommendations": "Recomendaciones Personalizadas",
+    "community": "Blogs y Soporte Comunitario",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "copyright": "© 2025 Carewise AI | Todos los derechos reservados"
+  },
+  "home": {
+    "welcome": "Bienvenido a Carewise AI",
+    "intro": "Tu Compañero Inteligente de Salud",
+    "features": {
+      "title": "Nuestras Características",
+      "symptomChecker": {
+        "title": "Verificador de Síntomas IA",
+        "description": "Obtén información instantánea sobre tus síntomas usando IA avanzada"
+      },
+      "recommendations": {
+        "title": "Recomendaciones Inteligentes",
+        "description": "Recibe recomendaciones de salud personalizadas"
+      },
+      "community": {
+        "title": "Soporte Comunitario",
+        "description": "Conéctate con otros y comparte experiencias"
+      }
+    },
+    "getStarted": "Comenzar"
+  },
+  "symptomChecker": {
+    "title": "Verificador de Síntomas IA",
+    "description": "Describe tus síntomas y deja que nuestra IA te ayude a entenderlos mejor",
+    "inputLabel": "Describe tus síntomas",
+    "placeholder": "Ejemplo: Tengo dolor de cabeza y fiebre...",
+    "analyze": "Analizar Síntomas",
+    "analyzing": "Analizando...",
+    "languageSelect": "Seleccionar Idioma",
+    "quickQuestions": {
+      "title": "Preguntas Rápidas",
+      "fever": "Tengo fiebre",
+      "headache": "Tengo dolor de cabeza",
+      "cough": "Tengo tos",
+      "stomach": "Tengo dolor de estómago",
+      "fatigue": "Me siento cansado"
+    }
+  },
+  "recommendations": {
+    "title": "Recomendaciones de Salud Personalizadas",
+    "description": "Obtén consejos de salud personalizados basados en tu perfil",
+    "categories": {
+      "diet": "Recomendaciones Dietéticas",
+      "exercise": "Planes de Ejercicio",
+      "lifestyle": "Consejos de Estilo de Vida",
+      "mental": "Bienestar Mental"
+    },
+    "updateProfile": "Actualizar Perfil de Salud",
+    "getRecommendations": "Obtener Recomendaciones"
+  },
+  "community": {
+    "title": "Comunidad y Soporte",
+    "description": "Conéctate con otros y comparte tu viaje de salud",
+    "features": {
+      "blogs": "Blogs de Salud",
+      "forums": "Foros de Discusión",
+      "support": "Grupos de Apoyo",
+      "experts": "Consejo de Expertos"
+    },
+    "joinCommunity": "Unirse a la Comunidad"
+  },
+  "about": {
+    "title": "Sobre Carewise AI",
+    "mission": "Nuestra Misión",
+    "missionText": "Hacer que la atención médica sea más accesible y comprensible usando inteligencia artificial",
+    "vision": "Nuestra Visión",
+    "visionText": "Un mundo donde todos tengan acceso a información de salud instantánea y confiable",
+    "team": {
+      "title": "Nuestro Equipo",
+      "description": "Un grupo dedicado de profesionales de la salud y expertos en IA"
+    },
+    "contact": {
+      "title": "Ponte en Contacto",
+      "description": "Nos encantaría saber de ti"
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "¿Tienes preguntas? ¡Estamos aquí para ayudar!",
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje"
+    },
+    "info": {
+      "email": "Correo: support@carewise.ai",
+      "phone": "Teléfono: +1 (555) 123-4567",
+      "address": "Dirección: 123 Healthcare Ave, Medical District"
+    }
+  },
+  "resultCard": {
+    "title": "Resultados del Análisis",
+    "condition": "Condición Posible",
+    "unknownCondition": "Condición desconocida",
+    "causes": "Causas Posibles",
+    "remedies": "Remedios Caseros",
+    "medicines": "Medicamentos Sugeridos",
+    "severity": "Nivel de Gravedad",
+    "openFda": {
+      "title": "Información de Medicamentos OpenFDA",
+      "brandName": "Nombre de Marca",
+      "genericName": "Nombre Genérico",
+      "purpose": "Propósito",
+      "warnings": "Advertencias"
+    },
+    "disclaimer": "Este análisis es solo para fines informativos y no debe reemplazar el consejo médico profesional. Por favor consulte a un proveedor de atención médica para un diagnóstico y tratamiento adecuados."
+  }
+} 
