@@ -284,8 +284,8 @@ const SymptomChecker = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="input-form">
-          <VoiceRecognition onResult={setUserInput} />
+        <form onSubmit={handleSubmit} className="input-form" style={{ display: 'flex', alignItems: 'center', gap: '0.5em' }}>
+          <VoiceRecognition onResult={setUserInput} className="voice-btn" />
           <input
             type="text"
             value={userInput}
@@ -293,6 +293,7 @@ const SymptomChecker = () => {
             placeholder={t('symptomChecker.placeholder')}
             className="input-field"
             disabled={isLoading}
+            style={{ flex: 1 }}
           />
           <Button 
             type="submit" 
