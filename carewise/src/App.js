@@ -32,7 +32,7 @@ function App() {
         <header className="app-header">
           <div className="header-content">
             <div className="header-title">
-              <h1>{t('header.title')}</h1>
+              <h1><span role="img" aria-label="Health Worker" style={{fontSize: '1.5em', verticalAlign: 'middle', marginRight: '0.3em'}}>⚕️</span>{t('header.title')}</h1>
               <p>{t('header.subtitle')}</p>
             </div>
             <div className="language-controls">
@@ -68,7 +68,7 @@ function App() {
         
         <nav className="sidebar">
           <div className="sidebar-logo">
-            <span role="img" aria-label="Carewise AI">🤖</span> Carewise AI
+            <span role="img" aria-label="Carewise AI">⚕️</span> Carewise AI
           </div>
           <ul>
             <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="Home">🏠</span> {t('navigation.home')}</NavLink></li>
