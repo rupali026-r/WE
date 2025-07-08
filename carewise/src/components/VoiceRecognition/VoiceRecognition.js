@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const VoiceRecognition = ({ onResult }) => {
+const VoiceRecognition = ({ onResult, className }) => {
   const [listening, setListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const [error, setError] = useState('');
-
   let recognition = null;
 
   const startListening = () => {
@@ -14,52 +11,44 @@ const VoiceRecognition = ({ onResult }) => {
       alert('Sorry, your browser does not support Speech Recognition.');
       return;
     }
-
-    setTranscript('');
-    setError('');
     setListening(true);
-
     recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = 'en-US';
-
     recognition.onresult = (event) => {
       const text = event.results[0][0].transcript;
-      setTranscript(text);
       setListening(false);
       if (onResult) onResult(text);
     };
-
-    recognition.onerror = (event) => {
-      setError('Error occurred in recognition: ' + event.error);
-      setListening(false);
-    };
-
-    recognition.onend = () => {
-      setListening(false);
-    };
-
+    recognition.onerror = () => setListening(false);
+    recognition.onend = () => setListening(false);
     recognition.start();
   };
 
   const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-    }
+    if (recognition) recognition.stop();
     setListening(false);
   };
 
   return (
-    <div style={{ margin: '1em 0' }}>
-      <button onClick={listening ? stopListening : startListening}>
-        {listening ? 'Stop Listening' : 'Start Voice Input'}
-      </button>
-      <div>
-        <strong>Transcript:</strong> {transcript}
-      </div>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-    </div>
+    <button
+      type="button"
+      onClick={listening ? stopListening : startListening}
+      className={className}
+      aria-label={listening ? 'Stop Listening' : 'Start Voice Input'}
+      style={{
+        background: 'none',
+        border: 'none',
+        fontSize: '1.5em',
+        cursor: 'pointer',
+        outline: 'none',
+        marginRight: '0.5em',
+        verticalAlign: 'middle',
+      }}
+    >
+      {listening ? '🛑' : '🎤'}
+    </button>
   );
 };
 
