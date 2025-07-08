@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div className="home">
       <section className="hero">
-        <h1>{t('home.welcome')}</h1>
-        <p>{t('home.intro')}</p>
+      ‍‍<h1><span role="img" aria-label="Health Worker">⚕️</span> Carewise AI</h1>
+         <p>{t('home.intro')}</p>
         <Link to="/symptom-checker" className="cta-button">
           {t('home.getStarted')}
         </Link>
