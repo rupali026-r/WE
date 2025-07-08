@@ -20,12 +20,36 @@ const SymptomChecker = () => {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false); // NEW: speech loading state
   const messagesEndRef = useRef(null);
   const { analyzeSymptoms, result, isLoading, error } = useSymptomAnalysis();
 
   const langMap = {
     en: 'en-US', hi: 'hi-IN', es: 'es-ES', fr: 'fr-FR', zh: 'zh-CN', ar: 'ar-SA', ru: 'ru-RU', de: 'de-DE', ja: 'ja-JP', pt: 'pt-PT', it: 'it-IT', bn: 'bn-IN', tr: 'tr-TR', te: 'te-IN', mr: 'mr-IN', ta: 'ta-IN', kn: 'kn-IN', ml: 'ml-IN'
   };
+
+  // Add this helper function for translation
+  async function translateText(text, targetLang) {
+    if (targetLang === 'en') return text;
+    try {
+      const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`);
+      const data = await res.json();
+      return data[0].map(item => item[0]).join(' ');
+    } catch (e) {
+      return text; // fallback to English if translation fails
+    }
+  }
+
+  // Helper to translate an array of strings with fallback
+  async function translateArray(arr, lang) {
+    return Promise.all(arr.map(async item => {
+      try {
+        return await translateText(item, lang);
+      } catch {
+        return item; // fallback to English if translation fails
+      }
+    }));
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -97,11 +121,15 @@ const SymptomChecker = () => {
     setUserInput(question);
   };
 
-  const speakDescription = () => {
+  const speakDescription = async () => {
     const description = t('symptomChecker.description');
     if ('speechSynthesis' in window) {
-      const utterance = new window.SpeechSynthesisUtterance(description);
       const currentLang = i18n.language || 'en';
+      let toSpeak = description;
+      if (currentLang !== 'en') {
+        toSpeak = await translateText(description, currentLang);
+      }
+      const utterance = new window.SpeechSynthesisUtterance(toSpeak);
       utterance.lang = langMap[currentLang] || 'en-US';
       window.speechSynthesis.speak(utterance);
     } else {
@@ -130,6 +158,18 @@ const SymptomChecker = () => {
     return text;
   };
 
+  // Add this function to reset chat
+  const handleClearChat = () => {
+    setMessages([
+      {
+        id: 1,
+        type: 'bot',
+        content: t('symptomChecker.description'),
+        timestamp: new Date()
+      }
+    ]);
+  };
+
   return (
     <div className="symptom-checker">
       <h1>{t('symptomChecker.title')}</h1>
@@ -141,6 +181,12 @@ const SymptomChecker = () => {
       </div>
 
       <div className="chat-container">
+        <div className="chatbot-header">
+          <h2>{t('symptomChecker.title')}</h2>
+          <button className="clear-chat-btn" onClick={handleClearChat} type="button">
+            {t('symptomChecker.clearChat', 'Clear Chat')}
+          </button>
+        </div>
         <div className="messages">
           {messages.map((message) => (
             <div
@@ -157,22 +203,43 @@ const SymptomChecker = () => {
                     {message.type === 'bot' && (
                       <button
                         type="button"
-                        onClick={() => {
+                        disabled={isSpeaking}
+                        onClick={async () => {
                           if ('speechSynthesis' in window) {
+                            setIsSpeaking(true);
                             let speechText = message.content;
-                            if (message.result) {
-                              speechText += ' ' + formatResultForSpeech(message.result);
-                            }
-                            const utterance = new window.SpeechSynthesisUtterance(speechText);
                             const currentLang = i18n.language || 'en';
-                            utterance.lang = langMap[currentLang] || 'en-US';
-                            window.speechSynthesis.speak(utterance);
+                            try {
+                              if (message.result) {
+                                const result = message.result;
+                                // Translate dynamic content with fallback
+                                let symptom = result.symptom;
+                                let causes = result.causes;
+                                let remedies = result.remedies;
+                                if (currentLang !== 'en') {
+                                  try { symptom = await translateText(result.symptom, currentLang); } catch {}
+                                  try { causes = await translateArray(result.causes, currentLang); } catch {}
+                                  try { remedies = await translateArray(result.remedies, currentLang); } catch {}
+                                }
+                                // Use t() for UI labels
+                                speechText = `${t('resultCard.analysisResults')}: ${symptom}. `;
+                                if (causes && causes.length) speechText += `${t('resultCard.causes')}: ${causes.join(', ')}. `;
+                                if (remedies && remedies.length) speechText += `${t('resultCard.remedies')}: ${remedies.join(', ')}. `;
+                              }
+                              const utterance = new window.SpeechSynthesisUtterance(speechText);
+                              utterance.lang = langMap[currentLang] || 'en-US';
+                              utterance.onend = () => setIsSpeaking(false);
+                              utterance.onerror = () => setIsSpeaking(false);
+                              window.speechSynthesis.speak(utterance);
+                            } catch {
+                              setIsSpeaking(false);
+                            }
                           }
                         }}
                         style={{ padding: '0.2em 0.5em' }}
                         aria-label="Speak response"
                       >
-                        🔊
+                        {isSpeaking ? <span className="spinner" style={{width: '1em', height: '1em', display: 'inline-block', border: '2px solid #ccc', borderTop: '2px solid #667eea', borderRadius: '50%', animation: 'spin 1s linear infinite'}}></span> : '🔊'}
                       </button>
                     )}
                   </div>
