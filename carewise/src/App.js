@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './i18n';
 import Home from './components/Home/Home';
@@ -67,13 +67,16 @@ function App() {
         </header>
         
         <nav className="sidebar">
+          <div className="sidebar-logo">
+            <span role="img" aria-label="Carewise AI">🤖</span> Carewise AI
+          </div>
           <ul>
-            <li><Link to="/">{t('navigation.home')}</Link></li>
-            <li><Link to="/symptom-checker">{t('navigation.symptomChecker')}</Link></li>
-            <li><Link to="/recommendations">{t('navigation.recommendations')}</Link></li>
-            <li><Link to="/community">{t('navigation.community')}</Link></li>
-            <li><Link to="/about">{t('navigation.about')}</Link></li>
-            <li><Link to="/contact">{t('navigation.contact')}</Link></li>
+            <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="Home">🏠</span> {t('navigation.home')}</NavLink></li>
+            <li><NavLink to="/symptom-checker" className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="AI Symptom Checker">🤖</span> {t('navigation.symptomChecker')}</NavLink></li>
+            <li><NavLink to="/recommendations" className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="Personalized Recommendations">💡</span> {t('navigation.recommendations')}</NavLink></li>
+            <li><NavLink to="/community" className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="Blogs and Community Support">📝</span> {t('navigation.community')}</NavLink></li>
+            <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="About Us">ℹ️</span> {t('navigation.about')}</NavLink></li>
+            <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}><span role="img" aria-label="Contact">✉️</span> {t('navigation.contact')}</NavLink></li>
           </ul>
         </nav>
         
