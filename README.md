@@ -36,22 +36,41 @@ The app supports 18+ languages and is designed for accessibility and ease of use
    ```
    The app will run at [http://localhost:3000](http://localhost:3000).
 ## Project Structure
-Project Structure
-
 carewise/
 ├── public/
-│ ├── index.html
-│ ├── logo192.png / logo512.png
-│ ├── manifest.json / robots.txt
+│   ├── index.html
+│   ├── logo192.png / logo512.png
+│   ├── manifest.json / robots.txt
+│
 ├── src/
-│ ├── components/ # Reusable components like Header, Footer
-│ ├── pages/ # Pages like Home, Symptoms, Map, etc.
-│ ├── translations/ # i18n translations (e.g., en.json, hi.json)
-│ ├── App.js / App.css # Main entry component
-│ ├── index.js / index.css # React root rendering
-│ ├── i18n.js # i18next configuration
-│ ├── reportWebVitals.js
-│ └── setupTests.js
+│   ├── components/           # Reusable UI and logic components
+│   │   ├── common/           # Shared UI elements (Button, LoadingSpinner, ResultCard)
+│   │   ├── Contact/          # Contact form and styles
+│   │   ├── Home/             # Home page hero and styles
+│   │   ├── hooks/            # Custom React hooks (useSymptomAnalysis)
+│   │   ├── Layout/           # Layout components (Header, Footer, SideBar)
+│   │   ├── Recommendations/  # Recommendations UI and logic
+│   │   ├── services/         # API and data service helpers (api.js, symptomService.js)
+│   │   ├── utils/            # Utility functions
+│   │   ├── VoiceRecognition/ # Voice input logic
+│   │   └── context/          # React context providers (if any)
+│   │
+│   ├── pages/                # Route-specific pages
+│   │   ├── About/            # About page
+│   │   ├── Community/        # Community/blog page
+│   │   ├── SymptomChecker/   # Symptom checker logic and styles
+│   │   ├── AboutPage.jsx / CommunityPage.jsx / ...
+│   │
+│   ├── translations/         # i18n translation files (en.json, hi.json, ...)
+│   │
+│   ├── App.js                # Root component
+│   ├── App.css               # Global styles
+│   ├── index.js              # Entry point
+│   ├── index.css             # Global CSS
+│   ├── i18n.js               # i18next configuration
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+│
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
