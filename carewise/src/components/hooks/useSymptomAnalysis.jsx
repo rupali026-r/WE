@@ -91,6 +91,71 @@ const knowledgeBase = {
     ],
     severity: 'Mild to Moderate',
     when_to_see_doctor: 'If lasts >48 hours, with severe pain, or unable to keep liquids down'
+  },
+  motion_sickness: {
+    causes: [
+      'Travel-related movement',
+      'Visual-vestibular conflict',
+      'Inner ear sensitivity',
+      'Anxiety or anticipation'
+    ],
+    remedies: [
+      'Ginger capsules or tea',
+      'Peppermint oil (aromatherapy)',
+      'Acupressure wristbands (Sea-Bands)'
+    ],
+    medicines: [
+      {
+        name: 'Dimenhydrinate',
+        brand: 'Dramamine',
+        description: 'Helps prevent and treat nausea, dizziness, and vomiting. Can cause drowsiness. Suitable for short-term use.'
+      },
+      {
+        name: 'Meclizine',
+        brand: 'Bonine, Antivert',
+        description: 'Longer-lasting than dimenhydrinate. Causes less drowsiness in some people. Often used for cruise or air travel.'
+      },
+      {
+        name: 'Cinnarizine',
+        brand: 'Stugeron',
+        description: 'Used for motion sickness and vertigo. Commonly prescribed in Asia and Europe.'
+      },
+      {
+        name: 'Scopolamine patch',
+        brand: 'Prescription',
+        description: 'Worn behind the ear, effective for long trips (cruise, flight). Not for children. May cause dry mouth, drowsiness.'
+      }
+    ],
+    severity: 'Mild to Moderate',
+    when_to_see_doctor: 'If symptoms persist despite medication, are severe, or are accompanied by dehydration.'
+  },
+  back_pain: {
+    causes: [
+      'Muscle strain or overuse (heavy lifting, poor posture)',
+      'Herniated disc or sciatica (nerve pain down the leg)',
+      'Arthritis (especially in older adults)',
+      'Osteoporosis (weak bones, fractures)',
+      'Kidney issues (if pain is deep, one-sided, with fever or blood in urine)',
+      'Stress and tension'
+    ],
+    remedies: [
+      'Rest briefly (1–2 days), but avoid long bed rest',
+      'Gentle stretching and walking',
+      'Use a warm compress or heating pad (for muscle tension)',
+      'Use an ice pack (for recent injury or swelling)',
+      'Maintain good posture when sitting or standing',
+      'Gentle back-strengthening exercises (as symptoms improve)',
+      'Consider seeing a physiotherapist for tailored exercises'
+    ],
+    medicines: [
+      { name: 'Paracetamol (acetaminophen)', type: 'Pain reliever', note: 'Always follow package directions and consult a doctor if unsure.' },
+      { name: 'Ibuprofen (Advil, Brufen)', type: 'NSAID', warning: 'Avoid NSAIDs if you have ulcers, kidney disease, or certain other conditions.' },
+      { name: 'Naproxen (Aleve)', type: 'NSAID', warning: 'Avoid NSAIDs if you have ulcers, kidney disease, or certain other conditions.' },
+      { name: 'Diclofenac gel', type: 'Topical cream/gel' },
+      { name: 'Capsaicin cream', type: 'Topical cream/gel' }
+    ],
+    severity: 'Mild to Moderate',
+    when_to_see_doctor: 'If pain is severe, lasts more than a few weeks, is associated with fever, unexplained weight loss, or numbness/weakness in legs.'
   }
 };
 
