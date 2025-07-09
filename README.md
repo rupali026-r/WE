@@ -129,5 +129,6 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 - [Create React App](https://github.com/facebook/create-react-app)
 - [OpenStreetMap](https://www.openstreetmap.org/)
 - [i18next](https://www.i18next.com/)
-Contact:
+
+## Contact:
 Rathod Rupali | rupalirathod026@gmail.com
