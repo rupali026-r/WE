@@ -8,6 +8,54 @@ import ResultCard from '../../components/common/ResultCard';
 import './SymptomChecker.css';
 import VoiceRecognition from '../../components/VoiceRecognition/VoiceRecognition';
 
+// Helper to fetch hospitals from Nominatim
+async function fetchHospitalsNear(city) {
+  const url = `https://nominatim.openstreetmap.org/search.php?q=hospitals+near+${encodeURIComponent(city)}&format=jsonv2`;
+  const response = await fetch(url, {
+    headers: { 'Accept': 'application/json' }
+  });
+  if (!response.ok) throw new Error('Failed to fetch hospital data');
+  return await response.json();
+}
+
+// Helper to geocode a location string to lat/lon using Nominatim
+async function geocodeLocation(location) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=jsonv2&limit=1`;
+  const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!response.ok) throw new Error('Failed to geocode location');
+  const data = await response.json();
+  if (!data.length) throw new Error('Location not found');
+  return data[0]; // { lat, lon, display_name }
+}
+
+// Helper to fetch hospitals near lat/lon using Nominatim
+async function fetchHospitalsNearLatLon(lat, lon) {
+  // Define a small bounding box around the lat/lon (e.g., ±0.1 degrees)
+  const delta = 0.1;
+  const left = parseFloat(lon) - delta;
+  const top = parseFloat(lat) + delta;
+  const right = parseFloat(lon) + delta;
+  const bottom = parseFloat(lat) - delta;
+  const viewbox = [left, top, right, bottom].join(',');
+  const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&amenity=hospital&limit=5&lat=${lat}&lon=${lon}&addressdetails=1&bounded=1&viewbox=${viewbox}`;
+  const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!response.ok) throw new Error('Failed to fetch hospital data');
+  return await response.json();
+}
+
+// Helper to calculate distance between two lat/lon points in km (Haversine formula)
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the earth in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
 const SymptomChecker = () => {
   const { t, i18n } = useTranslation();
   const [userInput, setUserInput] = useState('');
@@ -23,6 +71,9 @@ const SymptomChecker = () => {
   const [isSpeaking, setIsSpeaking] = useState(false); // NEW: speech loading state
   const messagesEndRef = useRef(null);
   const { analyzeSymptoms, result, isLoading, error } = useSymptomAnalysis();
+  // Track if we are waiting for a location after a severe condition
+  const [awaitingLocation, setAwaitingLocation] = useState(false);
+  const [isFetchingHospitals, setIsFetchingHospitals] = useState(false);
 
   const langMap = {
     en: 'en-US', hi: 'hi-IN', es: 'es-ES', fr: 'fr-FR', zh: 'zh-CN', ar: 'ar-SA', ru: 'ru-RU', de: 'de-DE', ja: 'ja-JP', pt: 'pt-PT', it: 'it-IT', bn: 'bn-IN', tr: 'tr-TR', te: 'te-IN', mr: 'mr-IN', ta: 'ta-IN', kn: 'kn-IN', ml: 'ml-IN'
@@ -102,6 +153,150 @@ const SymptomChecker = () => {
       timestamp: new Date()
     };
     setMessages(prev => [...prev, userMessage]);
+
+    const lowerInput = userInput.toLowerCase();
+
+    // Emergency message logic
+    const emergencyKeywords = [
+      'wrong medicine',
+      'took wrong medicine',
+      'taken wrong medicine',
+      'overdose',
+      'too much medicine',
+      'wrong tablet',
+      'wrong pill',
+      'wrong drug',
+      'extra dose',
+      'double dose',
+      'accidentally took',
+      'accidentally eaten',
+      'accidentally consumed'
+    ];
+    const isEmergency = emergencyKeywords.some(keyword => lowerInput.includes(keyword));
+    if (isEmergency) {
+      setMessages(prev => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          type: 'bot',
+          content: 'If you are feeling unwell or experiencing severe symptoms like chest pain, difficulty breathing, or confusion, please call emergency services immediately or go to the nearest hospital.',
+          timestamp: new Date(),
+          isError: true
+        }
+      ]);
+      setIsTyping(false);
+      setUserInput('');
+      setAwaitingLocation(false);
+      return;
+    }
+
+    // Severe condition location prompt logic
+    const severeKeywords = [
+      'severe',
+      'severe condition',
+      'serious condition',
+      'critical condition',
+      'emergency',
+      'urgent',
+      'life threatening',
+      'near hospital',
+      'need hospital',
+      'need ambulance',
+      'need help',
+      'very sick',
+      'dangerous',
+      'severely ill'
+    ];
+    const isSevere = severeKeywords.some(keyword => lowerInput.includes(keyword));
+    if (isSevere) {
+      setMessages(prev => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          type: 'bot',
+          content: 'You mentioned a severe condition. Please name your city and area so I can help you find nearby hospitals.',
+          timestamp: new Date(),
+          isError: false
+        }
+      ]);
+      setIsTyping(false);
+      setUserInput('');
+      setAwaitingLocation(true);
+      return;
+    }
+
+    // If awaiting location, treat user input as city/area and reply with Nominatim hospital search
+    if (awaitingLocation) {
+      setIsFetchingHospitals(true);
+      setIsTyping(true);
+      setUserInput('');
+      try {
+        // Step 1: Geocode the user's input
+        const geo = await geocodeLocation(userInput.trim());
+        const { lat, lon, display_name } = geo;
+        // Step 2: Search for hospitals near those coordinates
+        const hospitals = await fetchHospitalsNearLatLon(lat, lon);
+        // Step 3: Filter and sort by distance
+        const userLat = parseFloat(lat);
+        const userLon = parseFloat(lon);
+        const hospitalsWithDistance = hospitals.map(h => ({
+          ...h,
+          distance: getDistanceFromLatLonInKm(userLat, userLon, parseFloat(h.lat), parseFloat(h.lon))
+        }));
+        const nearbyHospitals = hospitalsWithDistance
+          .filter(h => h.distance <= 10)
+          .sort((a, b) => a.distance - b.distance)
+          .slice(0, 5);
+        if (nearbyHospitals.length === 0) {
+          setMessages(prev => [
+            ...prev,
+            {
+              id: prev.length + 1,
+              type: 'bot',
+              content: `Sorry, I couldn't find any hospitals within 10 km of ${display_name}.`,
+              timestamp: new Date(),
+              isError: true
+            }
+          ]);
+        } else {
+          const hospitalList = nearbyHospitals.map(h => {
+            // Try to split display_name into name and address
+            const [name, ...addressParts] = h.display_name.split(',');
+            const shortAddress = addressParts.join(',').trim().split(',').slice(0,2).join(',').trim(); // first two address parts
+            const hlat = h.lat;
+            const hlon = h.lon;
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${hlat},${hlon}`;
+            return `\n• **${name.trim()}**  \n${shortAddress ? shortAddress + '  ' : ''}\nDistance: ${h.distance.toFixed(2)} km\n[View on Google Maps](${mapsUrl})`;
+          }).join('\n\n');
+          setMessages(prev => [
+            ...prev,
+            {
+              id: prev.length + 1,
+              type: 'bot',
+              content: `\nShowing hospitals within 10 km of: **${display_name}**\n\n${hospitalList}`,
+              timestamp: new Date(),
+              isError: false
+            }
+          ]);
+        }
+      } catch (err) {
+        setMessages(prev => [
+          ...prev,
+          {
+            id: prev.length + 1,
+            type: 'bot',
+            content: `Sorry, there was an error finding your location or fetching hospital data. Please try again with a more specific city or area name!`,
+            timestamp: new Date(),
+            isError: true
+          }
+        ]);
+      } finally {
+        setIsTyping(false);
+        setIsFetchingHospitals(false);
+        setAwaitingLocation(false);
+      }
+      return;
+    }
 
     setIsTyping(true);
     setUserInput('');
