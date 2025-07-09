@@ -82,15 +82,64 @@ const knowledgeBase = {
     when_to_see_doctor: 'If covers large area, with fever, or spreads quickly'
   },
   nausea: {
-    causes: ['Food poisoning', 'Motion sickness', 'Pregnancy', 'Migraine', 'GERD'],
-    remedies: ['Small, bland meals', 'Ginger tea', 'Fresh air', 'Acupressure'],
-    medicines: [
-      { name: 'Dimenhydrinate (Dramamine)', dosage: '50-100mg every 4-6 hours' },
-      { name: 'Meclizine (Bonine)', dosage: '25-50mg daily' },
-      { name: 'Emetrol', dosage: '15-30mL every 15 minutes until symptoms subside' }
+    causes: [
+      'Stomach infection (viral gastroenteritis)',
+      'Food poisoning or spoiled food.',
+      'Motion sickness (travel-related).',
+      'Overeating or indigestion.',
+      'Migraine headaches.',
+      'Pregnancy (morning sickness).',
+      'Medication side effects.',
+      'Stress or anxiety.',
+      'Heatstroke or dehydration.',
+      'Serious causes: appendicitis, intestinal blockage, kidney failure (if vomiting is persistent and severe).'
     ],
-    severity: 'Mild to Moderate',
-    when_to_see_doctor: 'If lasts >48 hours, with severe pain, or unable to keep liquids down'
+    medicines: [
+      { name: 'Ondansetron (Zofran)', note: 'Common anti-nausea prescription.' },
+      { name: 'Domperidone (Domstal)', note: 'Helps with nausea and digestion.' },
+      { name: 'Doxylamine + Pyridoxine', note: 'Safe in pregnancy-related nausea.' },
+      { name: 'ORS (Oral Rehydration Solution)', note: 'Essential if there\'s dehydration.' }
+    ],
+    remedies: [
+      'Rest in a cool, quiet environment.',
+      'Sip clear fluids slowly (ORS, water, coconut water, clear soup).',
+      'Avoid solid food until vomiting stops.',
+      'When ready, try bland foods: toast, rice, banana, apple.',
+      'Avoid spicy, oily, or dairy-based foods for a while.',
+      'Ginger tea or sucking ginger candy may reduce nausea.'
+    ],
+    severity: 'Mild to Severe',
+    when_to_see_doctor: 'If vomiting is persistent, severe, with blood, or accompanied by dehydration, confusion, or severe abdominal pain.'
+  },
+  vomiting: {
+    causes: [
+      'Stomach infection (viral gastroenteritis)',
+      'Food poisoning or spoiled food.',
+      'Motion sickness (travel-related).',
+      'Overeating or indigestion.',
+      'Migraine headaches.',
+      'Pregnancy (morning sickness).',
+      'Medication side effects.',
+      'Stress or anxiety.',
+      'Heatstroke or dehydration.',
+      'Serious causes: appendicitis, intestinal blockage, kidney failure (if vomiting is persistent and severe).'
+    ],
+    medicines: [
+      { name: 'Ondansetron (Zofran)', note: 'Common anti-nausea prescription.' },
+      { name: 'Domperidone (Domstal)', note: 'Helps with nausea and digestion.' },
+      { name: 'Doxylamine + Pyridoxine', note: 'Safe in pregnancy-related nausea.' },
+      { name: 'ORS (Oral Rehydration Solution)', note: 'Essential if there\'s dehydration.' }
+    ],
+    remedies: [
+      'Rest in a cool, quiet environment.',
+      'Sip clear fluids slowly (ORS, water, coconut water, clear soup).',
+      'Avoid solid food until vomiting stops.',
+      'When ready, try bland foods: toast, rice, banana, apple.',
+      'Avoid spicy, oily, or dairy-based foods for a while.',
+      'Ginger tea or sucking ginger candy may reduce nausea.'
+    ],
+    severity: 'Mild to Severe',
+    when_to_see_doctor: 'If vomiting is persistent, severe, with blood, or accompanied by dehydration, confusion, or severe abdominal pain.'
   },
   motion_sickness: {
     causes: [
