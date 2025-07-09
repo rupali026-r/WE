@@ -36,8 +36,6 @@ The app supports 18+ languages and is designed for accessibility and ease of use
    ```
    The app will run at [http://localhost:3000](http://localhost:3000).
 ## Project Structure
-## Project Structure
-
 ```
 carewise/
 ├── public/
